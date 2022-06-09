@@ -1,10 +1,10 @@
 """Factory for creating a game character."""
 
-from typing import Any, Callable
+from typing import Any, Callable, Dict
 
 from game.character import GameCharacter
 
-character_creation_funcs: dict[str, Callable[..., GameCharacter]] = {}
+character_creation_funcs: Dict[str, Callable[..., GameCharacter]] = {}
 
 
 def register(character_type: str, creator_fn: Callable[..., GameCharacter]) -> None:
@@ -17,7 +17,7 @@ def unregister(character_type: str) -> None:
     character_creation_funcs.pop(character_type, None)
 
 
-def create(arguments: dict[str, Any]) -> GameCharacter:
+def create(arguments: Dict[str, Any]) -> GameCharacter:
     """Create a game character of a specific type, given JSON data."""
     args_copy = arguments.copy()
     character_type = args_copy.pop("type")
