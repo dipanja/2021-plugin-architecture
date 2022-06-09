@@ -1,5 +1,6 @@
 """A simple plugin loader."""
 import importlib
+from typing import LIst
 
 
 class ModuleInterface:
@@ -15,7 +16,7 @@ def import_module(name: str) -> ModuleInterface:
     return importlib.import_module(name)  # type: ignore
 
 
-def load_plugins(plugins: list[str]) -> None:
+def load_plugins(plugins: List[str]) -> None:
     """Loads the plugins defined in the plugins list."""
     for plugin_file in plugins:
         plugin = import_module(plugin_file)
